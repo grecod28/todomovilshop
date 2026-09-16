@@ -1,0 +1,254 @@
+---
+// ============================================================
+// Footer: logo, dirección, redes sociales, RSS, enlaces
+// legales y copyright con año dinámico.
+// ============================================================
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+	<div class="container footer__grid">
+		<!-- Marca + dirección -->
+		<div class="footer__brand">
+			<a href="/" class="footer__logo" aria-label="TodoMóvilShop — inicio">
+				<span class="footer__logo-mark" aria-hidden="true">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<rect x="7" y="2" width="10" height="20" rx="2"></rect>
+						<path d="M11 18h2"></path>
+					</svg>
+				</span>
+				Todo<span>Móvil</span>Shop
+			</a>
+			<address class="footer__address">
+				Rúa Santo Domingo, Nº 64<br />
+				Galerías Comerciales Santo Domingo<br />
+				32003 Ourense
+			</address>
+			<div class="footer__social">
+				<!-- Facebook -->
+				<a
+					href="https://www.facebook.com/paulacacharroncortontodomovilshop"
+					target="_blank"
+					rel="noopener"
+					aria-label="Facebook de TodoMóvilShop"
+					class="footer__social-link"
+				>
+					<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07Z"></path>
+					</svg>
+				</a>
+				<!-- Instagram -->
+				<a
+					href="https://www.instagram.com/todomovishop_ourense/"
+					target="_blank"
+					rel="noopener"
+					aria-label="Instagram de TodoMóvilShop"
+					class="footer__social-link"
+				>
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<rect x="2" y="2" width="20" height="20" rx="5"></rect>
+						<circle cx="12" cy="12" r="4"></circle>
+						<path d="M17.5 6.5h.01"></path>
+					</svg>
+				</a>
+				<!-- RSS -->
+				<a href="/rss.xml" aria-label="Feed RSS del blog" class="footer__social-link">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M4 11a9 9 0 0 1 9 9"></path>
+						<path d="M4 4a16 16 0 0 1 16 16"></path>
+						<circle cx="5" cy="19" r="1"></circle>
+					</svg>
+				</a>
+			</div>
+		</div>
+
+		<!-- Navegación -->
+		<nav class="footer__col" aria-label="Enlaces de navegación">
+			<h4>Navegación</h4>
+			<ul>
+				<li><a href="#quienes-somos">Quiénes somos</a></li>
+				<li><a href="#servicios">Servicios</a></li>
+				<li><a href="#blog">Blog</a></li>
+				<li><a href="#ubicacion">Cómo llegar</a></li>
+				<li><a href="#contacto">Contacto</a></li>
+			</ul>
+		</nav>
+
+		<!-- Servicios -->
+		<nav class="footer__col" aria-label="Enlaces de servicios">
+			<h4>Servicios</h4>
+			<ul>
+				<li><a href="#tienda-moviles">Tienda de móviles</a></li>
+				<li><a href="#tienda-xiaomi">Tienda Xiaomi</a></li>
+				<li><a href="#reparaciones">Reparaciones</a></li>
+				<li><a href="#mejores-precios">Mejores precios</a></li>
+				<li><a href="#tarifas">Tarifas</a></li>
+			</ul>
+		</nav>
+
+		<!-- Legal -->
+		<nav class="footer__col" aria-label="Enlaces legales">
+			<h4>Legal</h4>
+			<ul>
+				<li><a href="#">Aviso Legal</a></li>
+				<li><a href="#">Política de Privacidad</a></li>
+				<li><a href="#">Política de Cookies</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- Barra inferior con copyright dinámico -->
+	<div class="footer__bottom">
+		<div class="container footer__bottom-inner">
+			<p>© {year} TodoMóvilShop · Ourense. Todos los derechos reservados.</p>
+			<a href="tel:+34619522906" class="footer__phone">619 522 906</a>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		background: #101827;
+		color: #b9c4d4;
+		padding-top: 4rem;
+	}
+
+	.footer__grid {
+		display: grid;
+		gap: 2.5rem;
+		padding-bottom: 3rem;
+	}
+
+	/* ---------- Marca ---------- */
+	.footer__logo {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+		color: #fff;
+		font-family: var(--font-heading);
+		font-weight: 700;
+		font-size: 1.2rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.footer__logo span {
+		background: var(--gradient-brand);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
+	.footer__logo-mark {
+		display: grid;
+		place-items: center;
+		width: 40px;
+		height: 40px;
+		border-radius: 12px;
+		background: var(--gradient-brand);
+		color: #fff;
+	}
+
+	.footer__logo-mark svg {
+		width: 22px;
+		height: 22px;
+	}
+
+	.footer__address {
+		font-style: normal;
+		font-size: 0.92rem;
+		line-height: 1.7;
+		margin-bottom: 1.4rem;
+	}
+
+	/* ---------- Redes sociales ---------- */
+	.footer__social {
+		display: flex;
+		gap: 0.7rem;
+	}
+
+	.footer__social-link {
+		display: grid;
+		place-items: center;
+		width: 42px;
+		height: 42px;
+		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.08);
+		color: #dbe4f0;
+		transition:
+			background var(--speed) var(--ease),
+			transform var(--speed) var(--ease),
+			color var(--speed) var(--ease);
+	}
+
+	.footer__social-link svg {
+		width: 19px;
+		height: 19px;
+	}
+
+	.footer__social-link:hover {
+		background: var(--gradient-brand);
+		color: #fff;
+		transform: translateY(-3px);
+	}
+
+	/* ---------- Columnas ---------- */
+	.footer__col h4 {
+		color: #fff;
+		font-size: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	.footer__col ul {
+		display: grid;
+		gap: 0.55rem;
+	}
+
+	.footer__col a {
+		color: #b9c4d4;
+		font-size: 0.92rem;
+		transition: color var(--speed) var(--ease);
+	}
+
+	.footer__col a:hover {
+		color: var(--color-cyan);
+	}
+
+	/* ---------- Barra inferior ---------- */
+	.footer__bottom {
+		border-top: 1px solid rgba(255, 255, 255, 0.09);
+		padding: 1.3rem 0;
+	}
+
+	.footer__bottom-inner {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.footer__bottom p {
+		margin: 0;
+		font-size: 0.85rem;
+	}
+
+	.footer__phone {
+		color: var(--color-cyan);
+		font-weight: 600;
+		font-size: 0.9rem;
+	}
+
+	/* ============================================================
+	   Responsive
+	   ============================================================ */
+	@media (min-width: 768px) {
+		.footer__grid {
+			grid-template-columns: 1.4fr 1fr 1fr 1fr;
+		}
+
+		.footer__bottom-inner {
+			flex-direction: row;
+		}
+	}
+</style>

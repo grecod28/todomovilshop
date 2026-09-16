@@ -1,23 +1,104 @@
+---
+// ============================================================
+// Layout base de TodoMóvilShop
+// Cabecera SEO, fuentes, Header/Footer y botón de WhatsApp
+// están aquí para que aparezcan en todas las páginas del sitio.
+// ============================================================
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsappButton from '../components/WhatsappButton.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'Tienda de telefonía en Ourense | TodoMóvilShop',
+	description = 'TodoMóvilShop: tu tienda de telefonía móvil en Ourense. Móviles Xiaomi, reparaciones en horas, mejores precios y tarifas de todas las compañías. Rúa Santo Domingo 64, Ourense.',
+} = Astro.props;
+
+// Datos estructurados LocalBusiness para SEO local (Google)
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'MobilePhoneStore',
+	name: 'TodoMóvilShop',
+	image: '/images/2022041913203017628.jpg',
+	telephone: '+34619522906',
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: 'Rúa Santo Domingo, 64, Galerías Comerciales Santo Domingo',
+		postalCode: '32003',
+		addressLocality: 'Ourense',
+		addressRegion: 'Galicia',
+		addressCountry: 'ES',
+	},
+};
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
-		<title>Tienda de telefonía en Ourense | TodoMóvilShop</title>
+		<link rel="canonical" href="https://www.todomovilshop.es/" />
+
+		<!-- Open Graph / redes sociales -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="TodoMóvilShop" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content="https://www.todomovilshop.es/" />
+		<meta property="og:image" content="/images/2022041913203017628.jpg" />
+		<meta name="twitter:card" content="summary_large_image" />
+
+		<!-- Color de la interfaz en móvil -->
+		<meta name="theme-color" content="#3F90CE" />
+
+		<!-- Favicon -->
+		<link rel="icon" href="/favicon.ico" />
+
+		<!-- Fuentes: Poppins (títulos) + Inter (texto) -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Datos estructurados (SEO local) -->
+		<script type="application/ld+json" set:html={JSON.stringify(schema)} />
 	</head>
 	<body>
-		<slot />
+		<!-- Header fijo + contenido de cada página + footer -->
+		<Header />
+		<main id="contenido">
+			<slot />
+		</main>
+		<Footer />
+
+		<!-- Botón flotante de WhatsApp, visible en toda la web -->
+		<WhatsappButton />
+
+		<script>
+			// Activa la clase .is-visible en los elementos .reveal
+			// cuando entran en el viewport (micro-animación de scroll).
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('is-visible');
+							observer.unobserve(entry.target); // animar solo una vez
+						}
+					});
+				},
+				{ threshold: 0.12 }
+			);
+			document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+		</script>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

@@ -1,0 +1,320 @@
+---
+// ============================================================
+// Secciones "Quiénes somos" (imagen + 3 tarjetas) y
+// "Sobre nosotros" (texto extendido con fondo alterno).
+// ============================================================
+---
+
+<!-- ======================= QUIÉNES SOMOS ======================= -->
+<section class="section" id="quienes-somos">
+	<div class="container">
+		<div class="sobre__grid">
+			<!-- Imagen con marco decorativo -->
+			<figure class="sobre__media reveal">
+				<img
+					src="/images/2022041913203017628.jpg"
+					alt="Interior de la tienda TodoMóvilShop en Ourense con expositores de móviles"
+					loading="lazy"
+					width="640"
+					height="480"
+				/>
+				<figcaption class="sobre__badge">
+					<strong>TodoMóvilShop</strong>
+					<span>Ourense · Rúa Santo Domingo 64</span>
+				</figcaption>
+			</figure>
+
+			<!-- Texto de presentación -->
+			<div class="sobre__content reveal" data-delay="1">
+				<span class="section__eyebrow">Quiénes somos</span>
+				<h2 class="section__title">Tu tienda de confianza en el corazón de Ourense</h2>
+				<p>
+					En <strong>TodoMóvilShop</strong> trabajamos cada día para acercarte la
+					última tecnología móvil al mejor precio. Somos una tienda de
+					telefonía de barrio, cercana y especializada, donde el trato
+					personal es tan importante como la calidad del producto.
+				</p>
+				<ul class="sobre__points">
+					<li>Amplia gama de móviles de las mejores marcas</li>
+					<li>Servicio técnico propio de reparación</li>
+					<li>Asesoramiento honesto, sin letra pequeña</li>
+					<li>Punto de venta oficial Xiaomi en Ourense</li>
+				</ul>
+				<a class="btn btn--primary" href="#contacto">Habla con nosotros</a>
+			</div>
+		</div>
+
+		<!-- 3 sub-bloques tipo tarjeta -->
+		<div class="sobre__cards">
+			<article class="card sobre__card reveal">
+				<span class="sobre__icon" aria-hidden="true">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+					</svg>
+				</span>
+				<h3>Qué es TodoMóvilShop</h3>
+				<p>
+					Una tienda de telefonía móvil situada en las Galerías Comerciales
+					Santo Domingo, en pleno centro de Ourense, especializada en
+					móviles, accesorios, reparaciones y tarifas.
+				</p>
+			</article>
+
+			<article class="card sobre__card reveal" data-delay="1">
+				<span class="sobre__icon" aria-hidden="true">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
+						<path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
+						<path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+					</svg>
+				</span>
+				<h3>Qué te ofrece</h3>
+				<p>
+					Las mejores marcas de móviles, accesorios, reparaciones rápidas
+					en horas y tarifas de las principales compañías, todo con el
+					mejor servicio post-venta de la ciudad.
+				</p>
+			</article>
+
+			<article class="card sobre__card reveal" data-delay="2">
+				<span class="sobre__icon" aria-hidden="true">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<circle cx="12" cy="12" r="10"></circle>
+						<path d="M12 6v6l4 2"></path>
+					</svg>
+				</span>
+				<h3>Metodología de trabajo</h3>
+				<p>
+					Escuchamos tu necesidad, te asesoramos sin compromiso y buscamos
+					la solución que mejor se adapta a tu uso y presupuesto. Rápido,
+					claro y con garantía.
+				</p>
+			</article>
+		</div>
+	</div>
+</section>
+
+<!-- ======================= SOBRE NOSOTROS ======================= -->
+<section class="section section--alt" id="sobre-nosotros">
+	<div class="container sobre-extendido">
+		<div class="section__header reveal">
+			<span class="section__eyebrow">Sobre nosotros</span>
+			<h2 class="section__title">Mucho más que una tienda de móviles</h2>
+		</div>
+
+		<div class="sobre-extendido__panel card reveal" data-delay="1">
+			<p class="sobre-extendido__lead">
+				Somos un espacio que reúne las mejores marcas de móviles y que
+				cuenta con grandes ofertas en las mayores compañías móviles.
+				También ofrecemos servicio de reparación y tratamos de brindarte el
+				mejor servicio postventa.
+			</p>
+			<p>
+				Creemos que comprar un móvil o contratar una tarifa no debería ser
+				un quebradero de cabeza. Por eso combinamos catálogo actualizado,
+				reparaciones en horas y un equipo que te explica cada opción con
+				sinceridad, para que salgas de la tienda con lo que realmente
+				necesitas y al precio justo.
+			</p>
+			<div class="sobre-extendido__stats">
+				<div class="stat">
+					<strong class="stat__num">+10</strong>
+					<span class="stat__label">Marcas disponibles</span>
+				</div>
+				<div class="stat">
+					<strong class="stat__num">24/48h</strong>
+					<span class="stat__label">Reparaciones exprés</span>
+				</div>
+				<div class="stat">
+					<strong class="stat__num">100%</strong>
+					<span class="stat__label">Asesoramiento honesto</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	/* ---------- Grid principal: imagen + texto ---------- */
+	.sobre__grid {
+		display: grid;
+		gap: 3rem;
+		align-items: center;
+		margin-bottom: 4rem;
+	}
+
+	.sobre__media {
+		position: relative;
+		margin: 0;
+	}
+
+	.sobre__media img {
+		width: 100%;
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-md);
+		object-fit: cover;
+		aspect-ratio: 4 / 3;
+	}
+
+	/* Placa flotante sobre la imagen */
+	.sobre__badge {
+		position: absolute;
+		bottom: -1.4rem;
+		left: 1.4rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+		padding: 0.9rem 1.3rem;
+		background: #fff;
+		border-radius: var(--radius-md);
+		box-shadow: var(--shadow-md);
+	}
+
+	.sobre__badge strong {
+		font-family: var(--font-heading);
+		font-size: 1rem;
+		color: var(--color-blue-violet);
+	}
+
+	.sobre__badge span {
+		font-size: 0.82rem;
+		color: var(--color-text-soft);
+	}
+
+	/* Texto con viñetas de check */
+	.sobre__points {
+		display: grid;
+		gap: 0.6rem;
+		margin-bottom: 1.8rem;
+	}
+
+	.sobre__points li {
+		position: relative;
+		padding-left: 1.9rem;
+		font-weight: 500;
+	}
+
+	.sobre__points li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.35em;
+		width: 1.15rem;
+		height: 1.15rem;
+		border-radius: 50%;
+		background: var(--gradient-brand);
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E")
+			center / 70% no-repeat;
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E")
+			center / 70% no-repeat;
+	}
+
+	/* ---------- 3 tarjetas: qué es / qué ofrece / metodología ---------- */
+	.sobre__cards {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.sobre__card {
+		padding: 2rem 1.8rem;
+		text-align: center;
+	}
+
+	.sobre__icon {
+		display: grid;
+		place-items: center;
+		width: 58px;
+		height: 58px;
+		margin: 0 auto 1.2rem;
+		border-radius: 16px;
+		background: var(--gradient-brand);
+		color: #fff;
+		box-shadow: 0 10px 20px rgba(63, 144, 206, 0.3);
+		transition: transform var(--speed) var(--ease);
+	}
+
+	.sobre__card:hover .sobre__icon {
+		transform: scale(1.08) rotate(-4deg);
+	}
+
+	.sobre__icon svg {
+		width: 26px;
+		height: 26px;
+	}
+
+	.sobre__card h3 {
+		font-size: 1.15rem;
+		margin-bottom: 0.7rem;
+	}
+
+	.sobre__card p {
+		color: var(--color-text-soft);
+		font-size: 0.95rem;
+		margin: 0;
+	}
+
+	/* ---------- Panel extendido "Sobre nosotros" ---------- */
+	.sobre-extendido__panel {
+		max-width: 860px;
+		margin-inline: auto;
+		padding: 2.5rem 2rem;
+	}
+
+	.sobre-extendido__lead {
+		font-size: 1.15rem;
+		font-weight: 500;
+		color: var(--color-blue-violet);
+	}
+
+	.sobre-extendido__stats {
+		display: grid;
+		gap: 1.25rem;
+		margin-top: 2rem;
+		padding-top: 1.75rem;
+		border-top: 1px solid rgba(31, 60, 100, 0.1);
+		text-align: center;
+	}
+
+	.stat__num {
+		display: block;
+		font-family: var(--font-heading);
+		font-size: 1.8rem;
+		font-weight: 700;
+		background: var(--gradient-brand);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
+
+	.stat__label {
+		font-size: 0.85rem;
+		color: var(--color-text-soft);
+	}
+
+	/* ============================================================
+	   Responsive
+	   ============================================================ */
+	@media (min-width: 768px) {
+		.sobre__grid {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.sobre__cards {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.sobre-extendido__panel {
+			padding: 3rem 3.5rem;
+		}
+
+		.sobre-extendido__stats {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.sobre__grid {
+			gap: 4.5rem;
+		}
+	}
+</style>

@@ -1,0 +1,320 @@
+---
+// ============================================================
+// Sección "Contacto": formulario con validación RGPD.
+//
+// ⚠️ CONEXIÓN BACKEND: este formulario es solo UI.
+// Para enviar los datos puedes:
+//   1. Crear un endpoint en src/pages/api/contacto.json.ts
+//   2. Usar un servicio externo (Formspree, Netlify Forms…)
+//   3. Enviar por correo desde tu propio servidor
+// En cualquier caso, sustituye el atributo action="#" del
+// <form> por la URL correspondiente.
+// ============================================================
+---
+
+<section class="section" id="contacto">
+	<div class="container">
+		<div class="section__header reveal">
+			<span class="section__eyebrow">Contacto</span>
+			<h2 class="section__title">¿Hablamos?</h2>
+			<p class="section__subtitle">
+				Escríbenos tu consulta y te responderemos lo antes posible.
+			</p>
+		</div>
+
+		<div class="contacto__grid">
+			<!-- Formulario -->
+			<div class="card contacto__form reveal">
+				<form action="#" method="post" id="form-contacto">
+					<div class="form__row">
+						<div class="form__field">
+							<label for="nombre">Nombre *</label>
+							<input
+								type="text"
+								id="nombre"
+								name="nombre"
+								placeholder="Tu nombre"
+								autocomplete="name"
+								required
+							/>
+						</div>
+						<div class="form__field">
+							<label for="email">Email *</label>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								placeholder="tu@email.com"
+								autocomplete="email"
+								required
+							/>
+						</div>
+					</div>
+
+					<div class="form__field">
+						<label for="telefono">Teléfono</label>
+						<input
+							type="tel"
+							id="telefono"
+							name="telefono"
+							placeholder="Ej.: 619 000 000"
+							autocomplete="tel"
+						/>
+					</div>
+
+					<div class="form__field">
+						<label for="mensaje">Mensaje *</label>
+						<textarea
+							id="mensaje"
+							name="mensaje"
+							rows="5"
+							placeholder="Cuéntanos qué necesitas…"
+							required
+						></textarea>
+					</div>
+
+					<!-- Consentimiento RGPD -->
+					<div class="form__consent">
+						<input type="checkbox" id="privacidad" name="privacidad" required />
+						<label for="privacidad">
+							He leído y acepto la
+							<a href="#" target="_blank" rel="noopener"> política de privacidad</a>
+							y el tratamiento de mis datos conforme al RGPD. *
+						</label>
+					</div>
+
+					<button type="submit" class="btn btn--primary form__submit">
+						Enviar mensaje
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="m22 2-7 20-4-9-9-4Z"></path>
+							<path d="M22 2 11 13"></path>
+						</svg>
+					</button>
+				</form>
+			</div>
+
+			<!-- Información de contacto directo -->
+			<aside class="contacto__aside reveal" data-delay="1">
+				<h3>Contacto directo</h3>
+				<p>¿Prefieres hablar ahora mismo? Estamos a un clic de distancia.</p>
+
+				<a class="card contacto__direct" href="tel:+34619522906">
+					<span class="contacto__direct-icon" aria-hidden="true">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+						</svg>
+					</span>
+					<span>
+						<strong>Llámanos</strong>
+						<small>619 522 906</small>
+					</span>
+				</a>
+
+				<a class="card contacto__direct" href="https://wa.me/34619522906" target="_blank" rel="noopener">
+					<span class="contacto__direct-icon contacto__direct-icon--wa" aria-hidden="true">
+						<svg viewBox="0 0 24 24" fill="currentColor">
+							<path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.93L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm5.77 14.06c-.24.68-1.4 1.3-1.94 1.35-.52.05-1.17.24-3.94-.82-3.33-1.31-5.43-4.7-5.6-4.92-.16-.22-1.33-1.77-1.33-3.38 0-1.6.84-2.39 1.14-2.72.3-.33.65-.41.87-.41h.62c.2 0 .47-.08.73.55.27.65.9 2.24.98 2.4.08.16.14.36.03.58-.11.22-.17.36-.33.55-.16.19-.35.43-.5.57-.16.17-.34.35-.15.68.2.33.87 1.43 1.87 2.32 1.28 1.14 2.36 1.5 2.7 1.67.33.16.53.13.72-.08.2-.22.84-.98 1.06-1.31.22-.33.44-.27.74-.16.3.1 1.93.9 2.26 1.07.33.16.55.25.63.38.08.14.08.8-.16 1.48Z"></path>
+						</svg>
+					</span>
+					<span>
+						<strong>WhatsApp</strong>
+						<small>Respuesta rápida</small>
+					</span>
+				</a>
+
+				<a class="card contacto__direct" href="#ubicacion">
+					<span class="contacto__direct-icon" aria-hidden="true">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+							<circle cx="12" cy="10" r="3"></circle>
+						</svg>
+					</span>
+					<span>
+						<strong>Visítanos</strong>
+						<small>Rúa Santo Domingo 64, Ourense</small>
+					</span>
+				</a>
+			</aside>
+		</div>
+	</div>
+</section>
+
+<style>
+	.contacto__grid {
+		display: grid;
+		gap: 2rem;
+		align-items: start;
+	}
+
+	/* ---------- Formulario ---------- */
+	.contacto__form {
+		padding: 2.2rem 1.8rem;
+	}
+
+	.form__row {
+		display: grid;
+		gap: 1.1rem;
+	}
+
+	.form__field {
+		display: grid;
+		gap: 0.4rem;
+		margin-bottom: 1.1rem;
+	}
+
+	.form__field label {
+		font-weight: 600;
+		font-size: 0.9rem;
+		color: var(--color-text);
+	}
+
+	input[type='text'],
+	input[type='email'],
+	input[type='tel'],
+	textarea {
+		width: 100%;
+		padding: 0.85rem 1rem;
+		border: 2px solid rgba(31, 60, 100, 0.12);
+		border-radius: var(--radius-sm);
+		background: var(--color-bg);
+		font-family: var(--font-body);
+		font-size: 0.95rem;
+		color: var(--color-text);
+		transition:
+			border-color var(--speed) var(--ease),
+			background var(--speed) var(--ease),
+			box-shadow var(--speed) var(--ease);
+	}
+
+	input::placeholder,
+	textarea::placeholder {
+		color: #9aa8b6;
+	}
+
+	input:focus,
+	textarea:focus {
+		outline: none;
+		background: #fff;
+		border-color: var(--color-cyan);
+		box-shadow: 0 0 0 4px rgba(66, 168, 220, 0.15);
+	}
+
+	textarea {
+		resize: vertical;
+		min-height: 120px;
+	}
+
+	/* Checkbox RGPD */
+	.form__consent {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.7rem;
+		margin-bottom: 1.4rem;
+	}
+
+	.form__consent input[type='checkbox'] {
+		width: 18px;
+		height: 18px;
+		margin-top: 0.2rem;
+		accent-color: var(--color-blue);
+		flex-shrink: 0;
+		cursor: pointer;
+	}
+
+	.form__consent label {
+		font-size: 0.85rem;
+		color: var(--color-text-soft);
+	}
+
+	.form__consent a {
+		font-weight: 600;
+		text-decoration: underline;
+	}
+
+	.form__submit {
+		width: 100%;
+	}
+
+	.form__submit svg {
+		width: 18px;
+		height: 18px;
+	}
+
+	/* ---------- Columna de contacto directo ---------- */
+	.contacto__aside h3 {
+		font-size: 1.3rem;
+		margin-bottom: 0.4rem;
+	}
+
+	.contacto__aside > p {
+		color: var(--color-text-soft);
+		font-size: 0.95rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.contacto__direct {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 1.1rem 1.3rem;
+		margin-bottom: 1rem;
+	}
+
+	.contacto__direct-icon {
+		display: grid;
+		place-items: center;
+		width: 48px;
+		height: 48px;
+		flex-shrink: 0;
+		border-radius: 14px;
+		background: var(--gradient-brand);
+		color: #fff;
+		box-shadow: 0 8px 18px rgba(63, 144, 206, 0.3);
+		transition: transform var(--speed) var(--ease);
+	}
+
+	.contacto__direct-icon--wa {
+		background: #25d366;
+		box-shadow: 0 8px 18px rgba(37, 211, 102, 0.3);
+	}
+
+	.contacto__direct:hover .contacto__direct-icon {
+		transform: scale(1.06);
+	}
+
+	.contacto__direct-icon svg {
+		width: 22px;
+		height: 22px;
+	}
+
+	.contacto__direct strong,
+	.contacto__direct small {
+		display: block;
+		line-height: 1.35;
+	}
+
+	.contacto__direct strong {
+		color: var(--color-text);
+		font-size: 1rem;
+	}
+
+	.contacto__direct small {
+		color: var(--color-text-soft);
+		font-size: 0.85rem;
+	}
+
+	/* ============================================================
+	   Responsive
+	   ============================================================ */
+	@media (min-width: 768px) {
+		.form__row {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.contacto__grid {
+			grid-template-columns: 1.3fr 0.7fr;
+		}
+	}
+</style>

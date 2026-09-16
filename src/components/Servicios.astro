@@ -1,0 +1,255 @@
+---
+// ============================================================
+// Sección "Nuestros servicios": grid de tarjetas con icono,
+// título, descripción breve y enlace "Saber más".
+// Cada tarjeta tiene un id para los enlaces del submenú.
+// ============================================================
+---
+
+<section class="section section--alt" id="servicios">
+	<div class="container">
+		<div class="section__header reveal">
+			<span class="section__eyebrow">Nuestros servicios</span>
+			<h2 class="section__title">Todo lo que tu móvil necesita, en un solo lugar</h2>
+			<p class="section__subtitle">
+				De la compra a la reparación, pasando por tu tarifa: te acompañamos
+				en cada paso.
+			</p>
+		</div>
+
+		<div class="servicios__grid">
+			<!-- 1. Tienda de móviles -->
+			<article class="card servicio reveal" id="tienda-moviles">
+				<span class="servicio__icon" aria-hidden="true">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<rect x="7" y="2" width="10" height="20" rx="2"></rect>
+						<path d="M11 18h2"></path>
+					</svg>
+				</span>
+				<h3>Tienda de móviles en Ourense</h3>
+				<p>
+					Los últimos lanzamientos de las mejores marcas, con
+					asesoramiento personalizado para acertar con tu elección.
+				</p>
+				<a class="servicio__link" href="#contacto">
+					Saber más
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+			</article>
+
+			<!-- 2. Tienda Xiaomi -->
+			<article class="card servicio reveal" data-delay="1" id="tienda-xiaomi">
+				<span class="servicio__icon" aria-hidden="true">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M12 3v18"></path>
+						<path d="M9 3h6M9 21h6"></path>
+						<path d="M5 12h14"></path>
+						<path d="M3 9v6M3 12h2M19 12h2M3 12H1M21 12h2"></path>
+					</svg>
+				</span>
+				<h3>Tienda Xiaomi en Ourense</h3>
+				<p>
+					Punto de venta oficial Xiaomi: toda la gama Redmi, POCO y Mi
+					con garantía oficial del fabricante.
+				</p>
+				<a class="servicio__link" href="#contacto">
+					Saber más
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+			</article>
+
+			<!-- 3. Reparaciones -->
+			<article class="card servicio reveal" data-delay="2" id="reparaciones">
+				<span class="servicio__icon" aria-hidden="true">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+					</svg>
+				</span>
+				<h3>Reparaciones de móviles</h3>
+				<p>
+					Pantallas rotas, baterías, conectores... Reparamos tu móvil en
+					horas, con repuestos de calidad y garantía por escrito.
+				</p>
+				<a class="servicio__link" href="#contacto">
+					Saber más
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+			</article>
+
+			<!-- 4. Mejores precios -->
+			<article class="card servicio reveal" data-delay="3" id="mejores-precios">
+				<span class="servicio__icon" aria-hidden="true">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path>
+						<circle cx="7.5" cy="7.5" r="1.5"></circle>
+					</svg>
+				</span>
+				<h3>Mejores precios</h3>
+				<p>
+					Compara con tranquilidad: trabajamos cada día para ofrecerte
+					los precios más competitivos de la zona.
+				</p>
+				<a class="servicio__link" href="#contacto">
+					Saber más
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+			</article>
+
+			<!-- 5. Tarifas -->
+			<article class="card servicio reveal" data-delay="4" id="tarifas">
+				<span class="servicio__icon" aria-hidden="true">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<rect x="7" y="4" width="10" height="16" rx="2"></rect>
+						<path d="M11 4h2"></path>
+						<path d="M11 16h2"></path>
+						<path d="M10 9h4M12 7v4"></path>
+					</svg>
+				</span>
+				<h3>Tarifas y operadores</h3>
+				<p>
+					Te buscamos la tarifa móvil más barata entre las mayores
+					compañías y hacemos la portabilidad sin que pagues de más.
+				</p>
+				<a class="servicio__link" href="#contacto">
+					Saber más
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+			</article>
+
+			<!-- 6. Tarjeta CTA para completar el grid -->
+			<article class="card servicio servicio--cta reveal" data-delay="5">
+				<h3>¿No sabes por dónde empezar?</h3>
+				<p>Cuéntanos tu caso y te recomendamos la mejor opción, sin compromiso.</p>
+				<a class="btn btn--primary" href="#contacto">Pide asesoramiento</a>
+			</article>
+		</div>
+	</div>
+</section>
+
+<style>
+	.servicios__grid {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.servicio {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 2rem 1.8rem;
+	}
+
+	/* Icono en contenedor degradado */
+	.servicio__icon {
+		display: grid;
+		place-items: center;
+		width: 58px;
+		height: 58px;
+		margin-bottom: 1.3rem;
+		border-radius: 16px;
+		background: var(--gradient-brand);
+		color: #fff;
+		box-shadow: 0 10px 20px rgba(63, 144, 206, 0.3);
+		transition: transform var(--speed) var(--ease);
+	}
+
+	.servicio:hover .servicio__icon {
+		transform: scale(1.08) rotate(-4deg);
+	}
+
+	.servicio__icon svg {
+		width: 26px;
+		height: 26px;
+	}
+
+	.servicio h3 {
+		font-size: 1.15rem;
+		margin-bottom: 0.6rem;
+	}
+
+	.servicio p {
+		color: var(--color-text-soft);
+		font-size: 0.95rem;
+		flex-grow: 1;
+	}
+
+	/* Enlace "Saber más" con flecha animada */
+	.servicio__link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		margin-top: 1rem;
+		font-weight: 600;
+		font-size: 0.95rem;
+		color: var(--color-blue);
+	}
+
+	.servicio__link svg {
+		width: 16px;
+		height: 16px;
+		transition: transform var(--speed) var(--ease);
+	}
+
+	.servicio__link:hover {
+		color: var(--color-blue-violet);
+	}
+
+	.servicio__link:hover svg {
+		transform: translateX(4px);
+	}
+
+	/* Tarjeta CTA con gradiente */
+	.servicio--cta {
+		justify-content: center;
+		background: var(--gradient-brand);
+		color: #fff;
+	}
+
+	.servicio--cta h3 {
+		color: #fff;
+	}
+
+	.servicio--cta p {
+		color: rgba(255, 255, 255, 0.92);
+	}
+
+	.servicio--cta .btn--primary {
+		background: #fff;
+		color: var(--color-blue-violet);
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+	}
+
+	.servicio--cta .btn--primary:hover {
+		color: var(--color-blue);
+	}
+
+	/* ============================================================
+	   Responsive
+	   ============================================================ */
+	@media (min-width: 768px) {
+		.servicios__grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.servicios__grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+</style>

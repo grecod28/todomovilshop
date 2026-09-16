@@ -1,11 +1,23 @@
 ---
-import Welcome from '../components/Welcome.astro';
+// ============================================================
+// Página de inicio de TodoMóvilShop.
+// Header, Footer y botón de WhatsApp se montan desde Layout.astro
+// para que estén disponibles en todas las páginas del sitio.
+// ============================================================
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hero from '../components/Hero.astro';
+import Sobre from '../components/Sobre.astro';
+import Servicios from '../components/Servicios.astro';
+import Blog from '../components/Blog.astro';
+import Ubicacion from '../components/Ubicacion.astro';
+import Contacto from '../components/Contacto.astro';
 ---
 
 <Layout>
-	<Welcome />
+	<Hero />
+	<Sobre />
+	<Servicios />
+	<Blog />
+	<Ubicacion />
+	<Contacto />
 </Layout>
