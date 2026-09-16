@@ -1,0 +1,172 @@
+---
+// ============================================================
+// Layout para páginas legales (Aviso Legal, Política de
+// Privacidad y Política de Cookies).
+// Las páginas se escriben en Markdown (.md) y este layout
+// envuelve su contenido con estilos "prose" y el header/footer
+// comunes del sitio.
+// ============================================================
+import Layout from './Layout.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+	<article class="legal">
+		<div class="container legal__inner">
+			<a class="legal__back" href="/" aria-label="Volver a la página de inicio">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<path d="m12 19-7-7 7-7"></path>
+					<path d="M19 12H5"></path>
+				</svg>
+				Volver al inicio
+			</a>
+
+			<!-- Contenido de la página Markdown -->
+			<slot />
+		</div>
+	</article>
+</Layout>
+
+<style>
+	.legal {
+		padding: calc(var(--header-height) + 2.5rem) 0 5rem;
+		background: var(--color-white);
+	}
+
+	.legal__inner {
+		max-width: 840px;
+	}
+
+	.legal__back {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		margin-bottom: 2rem;
+		padding: 0.5rem 1.1rem;
+		border-radius: 999px;
+		background: var(--color-bg-soft);
+		color: var(--color-blue-violet);
+		font-size: 0.9rem;
+		font-weight: 600;
+		transition: background var(--speed) var(--ease);
+	}
+
+	.legal__back:hover {
+		background: var(--color-bg);
+	}
+
+	.legal__back svg {
+		width: 16px;
+		height: 16px;
+	}
+
+	/* ============================================================
+	   Estilos tipográficos del contenido Markdown.
+	   Se usan :global() porque el contenido llega por <slot />
+	   desde la página .md y no recibe estilos scoped.
+	   ============================================================ */
+	:global(.legal h1) {
+		font-size: clamp(1.9rem, 4vw, 2.5rem);
+		font-weight: 700;
+		background: var(--gradient-brand);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		margin-bottom: 1.4rem;
+	}
+
+	:global(.legal h2) {
+		font-size: 1.45rem;
+		margin-top: 2.6rem;
+		margin-bottom: 0.9rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 2px solid var(--color-bg-soft);
+	}
+
+	:global(.legal h3) {
+		font-size: 1.12rem;
+		margin-top: 1.8rem;
+		margin-bottom: 0.6rem;
+	}
+
+	:global(.legal p) {
+		font-size: 0.98rem;
+		color: var(--color-text);
+	}
+
+	:global(.legal ul),
+	:global(.legal ol) {
+		list-style: disc;
+		padding-left: 1.5rem;
+		margin: 0 0 1.2rem;
+		display: grid;
+		gap: 0.35rem;
+		font-size: 0.98rem;
+	}
+
+	:global(.legal ol) {
+		list-style: decimal;
+	}
+
+	:global(.legal li)::marker {
+		color: var(--color-blue);
+	}
+
+	:global(.legal a) {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		text-decoration-color: rgba(63, 144, 206, 0.4);
+		word-break: break-word;
+	}
+
+	:global(.legal a:hover) {
+		text-decoration-color: var(--color-blue);
+	}
+
+	:global(.legal strong) {
+		font-weight: 600;
+	}
+
+	/* Tablas (Política de Cookies y finalidades de Privacidad) */
+	:global(.legal table) {
+		display: block;
+		overflow-x: auto;
+		width: 100%;
+		border-collapse: collapse;
+		margin: 1.2rem 0 1.6rem;
+		font-size: 0.87rem;
+	}
+
+	:global(.legal th) {
+		background: var(--color-bg-soft);
+		color: var(--color-blue-violet);
+		font-weight: 600;
+		text-align: left;
+		padding: 0.7rem 0.9rem;
+		border: 1px solid rgba(31, 60, 100, 0.12);
+		white-space: nowrap;
+	}
+
+	:global(.legal td) {
+		padding: 0.7rem 0.9rem;
+		border: 1px solid rgba(31, 60, 100, 0.12);
+		vertical-align: top;
+		color: var(--color-text);
+	}
+
+	:global(.legal tbody tr:nth-child(even)) {
+		background: var(--color-bg);
+	}
+
+	:global(.legal hr) {
+		border: none;
+		border-top: 1px solid rgba(31, 60, 100, 0.12);
+		margin: 2rem 0;
+	}
+</style>

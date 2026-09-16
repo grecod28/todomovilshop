@@ -19,6 +19,9 @@ const {
 	description = 'TodoMóvilShop: tu tienda de telefonía móvil en Ourense. Móviles Xiaomi, reparaciones en horas, mejores precios y tarifas de todas las compañías. Rúa Santo Domingo 64, Ourense.',
 } = Astro.props;
 
+// URL canónica dinámica según la página actual
+const siteUrl = new URL(Astro.url.pathname, 'https://www.todomovilshop.es/').href;
+
 // Datos estructurados LocalBusiness para SEO local (Google)
 const schema = {
 	'@context': 'https://schema.org',
@@ -45,14 +48,14 @@ const schema = {
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
-		<link rel="canonical" href="https://www.todomovilshop.es/" />
+		<link rel="canonical" href={siteUrl} />
 
 		<!-- Open Graph / redes sociales -->
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="TodoMóvilShop" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:url" content="https://www.todomovilshop.es/" />
+		<meta property="og:url" content={siteUrl} />
 		<meta property="og:image" content="/images/2022041913203017628.jpg" />
 		<meta name="twitter:card" content="summary_large_image" />
 
