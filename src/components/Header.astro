@@ -9,12 +9,15 @@
 	<div class="container header__inner">
 		<!-- Logo -->
 		<a href="/" class="brand" aria-label="TodoMóvilShop — inicio">
-			<span class="brand__mark" aria-hidden="true">
-				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-					<rect x="7" y="2" width="10" height="20" rx="2"></rect>
-					<path d="M11 18h2"></path>
-				</svg>
-			</span>
+			<img
+				class="brand__mark"
+				src="/images/logo.png"
+				alt=""
+				width="40"
+				height="40"
+				loading="eager"
+				decoding="async"
+			/>
 			<span class="brand__name">Todo<span>Móvil</span>Shop</span>
 		</a>
 
@@ -114,19 +117,12 @@
 	}
 
 	.brand__mark {
-		display: grid;
-		place-items: center;
+		padding: .25rem;
 		width: 40px;
 		height: 40px;
 		border-radius: 12px;
-		background: var(--gradient-brand);
-		color: #fff;
+		object-fit: contain;
 		box-shadow: 0 6px 14px rgba(63, 144, 206, 0.35);
-	}
-
-	.brand__mark svg {
-		width: 22px;
-		height: 22px;
 	}
 
 	.brand__name span {
