@@ -1,0 +1,336 @@
+---
+// ============================================================
+// Ruta dinámica de los artículos del blog.
+// Genera una página por cada entrada de la colección "blog"
+// y renderiza su contenido Markdown con estilos de lectura.
+// ============================================================
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog', ({ data }) => !data.draft);
+	return posts.map((post) => ({
+		params: { slug: post.data.slug ?? post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (date: Date) =>
+	date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const readingTime = Math.max(1, Math.ceil((post.body ?? '').split(/\s+/).length / 200));
+---
+
+<Layout
+	title={post.data.title}
+	description={post.data.description}
+	image={post.data.image}
+	ogType="article"
+>
+	<article class="post">
+		<div class="container post__inner">
+			<a class="post__back" href="/blog/" aria-label="Volver al blog">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<path d="m12 19-7-7 7-7"></path>
+					<path d="M19 12H5"></path>
+				</svg>
+				Volver al blog
+			</a>
+
+			<header class="post__header">
+				<div class="post__meta">
+					<time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+					<span class="post__sep" aria-hidden="true">·</span>
+					<span>{post.data.author}</span>
+					<span class="post__sep" aria-hidden="true">·</span>
+					<span>{readingTime} min de lectura</span>
+				</div>
+				<h1>{post.data.title}</h1>
+			</header>
+
+			{post.data.image && (
+				<img
+					class="post__hero"
+					src={post.data.image}
+					alt={post.data.title}
+					width="1200"
+					height="675"
+					loading="eager"
+				/>
+			)}
+
+			<div class="post__body">
+				<Content />
+			</div>
+
+			{post.data.tags.length > 0 && (
+				<ul class="post__tags" aria-label="Etiquetas del artículo">
+					{post.data.tags.map((tag) => (
+						<li>{tag}</li>
+					))}
+				</ul>
+			)}
+
+			<aside class="post__cta">
+				<h2>¿Te quedó alguna duda?</h2>
+				<p>
+					Pásate por la tienda en el centro de Ourense o escríbenos: te
+					asesoramos sin compromiso y te lo aclaramos todo en persona.
+				</p>
+				<a class="btn btn--primary" href="/#contacto">Contacta con nosotros</a>
+			</aside>
+		</div>
+	</article>
+</Layout>
+
+<style>
+	.post {
+		padding: calc(var(--header-height) + 2.5rem) 0 5rem;
+		background: var(--color-white);
+	}
+
+	.post__inner {
+		max-width: 860px;
+	}
+
+	.post__back {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		margin-bottom: 2rem;
+		padding: 0.5rem 1.1rem;
+		border-radius: 999px;
+		background: var(--color-bg-soft);
+		color: var(--color-blue-violet);
+		font-size: 0.9rem;
+		font-weight: 600;
+		transition: background var(--speed) var(--ease);
+	}
+
+	.post__back:hover {
+		background: var(--color-bg);
+	}
+
+	.post__back svg {
+		width: 16px;
+		height: 16px;
+	}
+
+	.post__meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+		margin-bottom: 1rem;
+		color: var(--color-text-soft);
+		font-size: 0.88rem;
+	}
+
+	.post__sep {
+		color: var(--color-blue);
+	}
+
+	.post__header h1 {
+		font-size: clamp(1.9rem, 4vw, 2.5rem);
+		font-weight: 700;
+		background: var(--gradient-brand);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		margin-bottom: 1.6rem;
+	}
+
+	.post__hero {
+		width: 100%;
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-md);
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		margin-bottom: 2.2rem;
+	}
+
+	/* ============================================================
+	   Tipografía del contenido Markdown.
+	   :global() porque el contenido llega de la colección.
+	   ============================================================ */
+	:global(.post__body) {
+		font-size: 1rem;
+	}
+
+	:global(.post__body h2) {
+		font-size: 1.45rem;
+		margin-top: 2.6rem;
+		margin-bottom: 0.9rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 2px solid var(--color-bg-soft);
+	}
+
+	:global(.post__body h3) {
+		font-size: 1.12rem;
+		margin-top: 1.8rem;
+		margin-bottom: 0.6rem;
+	}
+
+	:global(.post__body p) {
+		color: var(--color-text);
+	}
+
+	:global(.post__body ul),
+	:global(.post__body ol) {
+		list-style: disc;
+		padding-left: 1.5rem;
+		margin: 0 0 1.2rem;
+		display: grid;
+		gap: 0.35rem;
+	}
+
+	:global(.post__body ol) {
+		list-style: decimal;
+	}
+
+	:global(.post__body li)::marker {
+		color: var(--color-blue);
+	}
+
+	:global(.post__body li ul),
+	:global(.post__body li ol) {
+		margin-top: 0.35rem;
+	}
+
+	:global(.post__body a) {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		text-decoration-color: rgba(63, 144, 206, 0.4);
+		word-break: break-word;
+	}
+
+	:global(.post__body a:hover) {
+		text-decoration-color: var(--color-blue);
+	}
+
+	:global(.post__body strong) {
+		font-weight: 600;
+	}
+
+	:global(.post__body blockquote) {
+		margin: 1.4rem 0;
+		padding: 0.4rem 1.2rem;
+		border-left: 3px solid var(--color-cyan);
+		background: var(--color-bg);
+		border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+		color: var(--color-text-soft);
+	}
+
+	:global(.post__body code) {
+		padding: 0.15rem 0.4rem;
+		border-radius: 6px;
+		background: var(--color-bg-soft);
+		font-size: 0.9em;
+		color: var(--color-blue-violet);
+	}
+
+	:global(.post__body pre) {
+		overflow-x: auto;
+		padding: 1.2rem;
+		border-radius: var(--radius-md);
+		background: #12233d;
+		color: #eaf1f8;
+		font-size: 0.88rem;
+		margin: 1.4rem 0;
+	}
+
+	:global(.post__body pre code) {
+		background: none;
+		color: inherit;
+		padding: 0;
+	}
+
+	:global(.post__body table) {
+		display: block;
+		overflow-x: auto;
+		width: 100%;
+		border-collapse: collapse;
+		margin: 1.2rem 0 1.6rem;
+		font-size: 0.9rem;
+	}
+
+	:global(.post__body th) {
+		background: var(--color-bg-soft);
+		color: var(--color-blue-violet);
+		font-weight: 600;
+		text-align: left;
+		padding: 0.7rem 0.9rem;
+		border: 1px solid rgba(31, 60, 100, 0.12);
+		white-space: nowrap;
+	}
+
+	:global(.post__body td) {
+		padding: 0.7rem 0.9rem;
+		border: 1px solid rgba(31, 60, 100, 0.12);
+		vertical-align: top;
+	}
+
+	:global(.post__body tbody tr:nth-child(even)) {
+		background: var(--color-bg);
+	}
+
+	:global(.post__body hr) {
+		border: none;
+		border-top: 1px solid rgba(31, 60, 100, 0.12);
+		margin: 2rem 0;
+	}
+
+	/* Etiquetas */
+	.post__tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-top: 2.4rem;
+		padding-top: 1.6rem;
+		border-top: 1px solid rgba(31, 60, 100, 0.12);
+	}
+
+	.post__tags li {
+		padding: 0.3rem 0.85rem;
+		border-radius: 999px;
+		background: var(--color-bg-soft);
+		color: var(--color-blue-violet);
+		font-size: 0.8rem;
+		font-weight: 600;
+		text-transform: lowercase;
+	}
+
+	/* CTA final */
+	.post__cta {
+		margin-top: 2.6rem;
+		padding: 2rem 1.8rem;
+		border-radius: var(--radius-lg);
+		background: var(--gradient-brand);
+		color: #fff;
+		text-align: center;
+	}
+
+	.post__cta h2 {
+		color: #fff;
+		font-size: 1.35rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.post__cta p {
+		color: rgba(255, 255, 255, 0.92);
+		margin-bottom: 1.4rem;
+	}
+
+	.post__cta .btn--primary {
+		background: #fff;
+		color: var(--color-blue-violet);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.post__cta .btn--primary:hover {
+		background: var(--color-bg);
+	}
+</style>

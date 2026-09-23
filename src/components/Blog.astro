@@ -1,9 +1,10 @@
 ---
 // ============================================================
 // Sección "Blog": grid de últimas publicaciones.
-// Datos de ejemplo: sustituye las rutas por las del CMS
-// o colección de contenido cuando el blog sea real.
+// Los datos salen de la colección de contenido "blog"
+// (src/content/blog) y enlazan a /blog/<slug>/.
 // ============================================================
+import { getCollection } from 'astro:content';
 
 interface Post {
 	title: string;
@@ -11,59 +12,24 @@ interface Post {
 	alt: string;
 	date: string; // formato legible
 	category: string;
-	href: string; // enlace al artículo (placeholder)
+	href: string; // enlace al artículo
 }
 
-const posts: Post[] = [
-	{
-		title: 'Gama Xiaomi Redmi Note en Ourense',
-		image: '/images/2026073012462626252.webp',
-		alt: 'Móvil de la gama Xiaomi Redmi Note expuesto en la tienda',
-		date: '30 de julio de 2026',
-		category: 'Xiaomi',
-		href: '#',
-	},
-	{
-		title: 'Vuelta al cole: gadgets tecnológicos imprescindibles',
-		image: '/images/2025082718530456306.jpg',
-		alt: 'Gadgets tecnológicos para la vuelta al cole',
-		date: '27 de agosto de 2026',
-		category: 'Consejos',
-		href: '#',
-	},
-	{
-		title: 'Smartband o smartwatch: ¿cuál elegir?',
-		image: '/images/2026082713071561774.jpg',
-		alt: 'Comparativa entre smartband y smartwatch',
-		date: '12 de agosto de 2026',
-		category: 'Wearables',
-		href: '#',
-	},
-	{
-		title: 'Primer móvil para un niño: edad recomendada',
-		image: '/images/2026073013392884773.jpg',
-		alt: 'Niño sujetando su primer teléfono móvil',
-		date: '30 de julio de 2026',
-		category: 'Consejos',
-		href: '#',
-	},
-	{
-		title: 'Protector de hidrogel para móvil, ¿dónde ponerlo?',
-		image: '/images/2026073013392944277.jpg',
-		alt: 'Colocación de un protector de hidrogel en un smartphone',
-		date: '18 de julio de 2026',
-		category: 'Accesorios',
-		href: '#',
-	},
-	{
-		title: 'Cómo elegir la mejor tarifa móvil sin pagar de más',
-		image: '/images/2022041913174977471.jpg',
-		alt: 'Persona comparando tarifas de telefonía móvil',
-		date: '5 de julio de 2026',
-		category: 'Tarifas',
-		href: '#',
-	},
-];
+const posts: Post[] = (await getCollection('blog', ({ data }) => !data.draft))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 6)
+	.map((post) => ({
+		title: post.data.title,
+		image: post.data.image ?? '',
+		alt: post.data.title,
+		date: post.data.pubDate.toLocaleDateString('es-ES', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		}),
+		category: post.data.tags[0] ?? 'Blog',
+		href: `/blog/${post.data.slug ?? post.id}/`,
+	}));
 ---
 
 <section class="section" id="blog">
