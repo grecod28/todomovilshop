@@ -12,11 +12,15 @@ import WhatsappButton from '../components/WhatsappButton.astro';
 interface Props {
 	title?: string;
 	description?: string;
+	image?: string;
+	ogType?: string;
 }
 
 const {
 	title = 'Tienda de telefonía en Ourense | TodoMóvilShop',
 	description = 'TodoMóvilShop: tu tienda de telefonía móvil en Ourense. Móviles Xiaomi, reparaciones en horas, mejores precios y tarifas de todas las compañías. Rúa Santo Domingo 64, Ourense.',
+	image = '/images/2022041913203017628.jpg',
+	ogType = 'website',
 } = Astro.props;
 
 // URL canónica dinámica según la página actual
@@ -51,12 +55,12 @@ const schema = {
 		<link rel="canonical" href={siteUrl} />
 
 		<!-- Open Graph / redes sociales -->
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content={ogType} />
 		<meta property="og:site_name" content="TodoMóvilShop" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={siteUrl} />
-		<meta property="og:image" content="/images/2022041913203017628.jpg" />
+		<meta property="og:image" content={image} />
 		<meta name="twitter:card" content="summary_large_image" />
 
 		<!-- Color de la interfaz en móvil -->

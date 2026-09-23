@@ -1,0 +1,187 @@
+---
+// ============================================================
+// Listado del blog: todas las publicaciones ordenadas
+// de más reciente a más antigua, con enlace a cada artículo.
+// ============================================================
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const formatDate = (date: Date) =>
+	date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const href = (slug: string) => `/blog/${slug}/`;
+---
+
+<Layout
+	title="Blog de TodoMóvilShop | Consejos sobre móviles, accesorios y tarifas"
+	description="Consejos, comparativas y guías prácticas sobre móviles, accesorios, wearables y tarifas. Escritos por TodoMóvilShop, tu tienda de telefonía en Ourense."
+>
+	<section class="section blog-index">
+		<div class="container">
+			<div class="section__header">
+				<span class="section__eyebrow">Blog</span>
+				<h1 class="section__title">Blog de TodoMóvilShop</h1>
+				<p class="section__subtitle">
+					Consejos, novedades y guías para sacar el máximo partido a tu móvil.
+				</p>
+			</div>
+
+			<div class="blog-index__grid">
+				{posts.map((post) => (
+					<article class="card blog-index__card">
+						<a class="blog-index__media" href={href(post.data.slug ?? post.id)} aria-label={`Leer artículo: ${post.data.title}`}>
+							{post.data.image && (
+								<img src={post.data.image} alt={post.data.title} loading="lazy" width="640" height="420" />
+							)}
+						</a>
+						<div class="blog-index__body">
+							<div class="blog-index__meta">
+								<span class="blog-index__category">{post.data.tags[0] ?? 'Blog'}</span>
+								<time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+							</div>
+							<h2 class="blog-index__title">
+								<a href={href(post.data.slug ?? post.id)}>{post.data.title}</a>
+							</h2>
+							<p class="blog-index__excerpt">{post.data.description}</p>
+							<a class="blog-index__more" href={href(post.data.slug ?? post.id)}>
+								Leer artículo
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M5 12h14"></path>
+									<path d="m12 5 7 7-7 7"></path>
+								</svg>
+							</a>
+						</div>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.blog-index {
+		padding-top: calc(var(--header-height) + 2.5rem);
+	}
+
+	.blog-index__grid {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.blog-index__card {
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.blog-index__media {
+		display: block;
+		overflow: hidden;
+		aspect-ratio: 16 / 10;
+	}
+
+	.blog-index__media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.45s var(--ease);
+	}
+
+	.blog-index__card:hover .blog-index__media img {
+		transform: scale(1.06);
+	}
+
+	.blog-index__body {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		padding: 1.4rem 1.5rem 1.5rem;
+	}
+
+	.blog-index__meta {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		margin-bottom: 0.8rem;
+	}
+
+	.blog-index__category {
+		padding: 0.25rem 0.8rem;
+		border-radius: 999px;
+		background: var(--color-bg-soft);
+		color: var(--color-blue-violet);
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.blog-index__meta time {
+		color: var(--color-text-soft);
+		font-size: 0.8rem;
+	}
+
+	.blog-index__title {
+		font-size: 1.05rem;
+		line-height: 1.4;
+		margin-bottom: 0.6rem;
+		flex-grow: 1;
+	}
+
+	.blog-index__title a {
+		color: var(--color-text);
+	}
+
+	.blog-index__title a:hover {
+		color: var(--color-blue);
+	}
+
+	.blog-index__excerpt {
+		font-size: 0.9rem;
+		color: var(--color-text-soft);
+		margin-bottom: 1rem;
+	}
+
+	.blog-index__more {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-weight: 600;
+		font-size: 0.9rem;
+		color: var(--color-blue);
+	}
+
+	.blog-index__more svg {
+		width: 15px;
+		height: 15px;
+		transition: transform var(--speed) var(--ease);
+	}
+
+	.blog-index__more:hover {
+		color: var(--color-blue-violet);
+	}
+
+	.blog-index__more:hover svg {
+		transform: translateX(4px);
+	}
+
+	/* ============================================================
+	   Responsive
+	   ============================================================ */
+	@media (min-width: 768px) {
+		.blog-index__grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.blog-index__grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+</style>

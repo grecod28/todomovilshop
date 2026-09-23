@@ -1,14 +1,8 @@
 ---
 // ============================================================
 // Sección "Contacto": formulario con validación RGPD.
-//
-// ⚠️ CONEXIÓN BACKEND: este formulario es solo UI.
-// Para enviar los datos puedes:
-//   1. Crear un endpoint en src/pages/api/contacto.json.ts
-//   2. Usar un servicio externo (Formspree, Netlify Forms…)
-//   3. Enviar por correo desde tu propio servidor
-// En cualquier caso, sustituye el atributo action="#" del
-// <form> por la URL correspondiente.
+// Al enviar, abre Gmail con los datos dirigidos a
+// todomovilourense@gmail.com.
 // ============================================================
 ---
 
@@ -25,7 +19,7 @@
 		<div class="contacto__grid">
 			<!-- Formulario -->
 			<div class="card contacto__form reveal">
-				<form action="#" method="post" id="form-contacto">
+				<form id="form-contacto">
 					<div class="form__row">
 						<div class="form__field">
 							<label for="nombre">Nombre *</label>
@@ -138,6 +132,33 @@
 		</div>
 	</div>
 </section>
+
+<script>
+	const form = document.getElementById('form-contacto');
+
+	form?.addEventListener('submit', (event) => {
+		event.preventDefault();
+
+		const data = new FormData(form);
+		const nombre = String(data.get('nombre') ?? '');
+		const email = String(data.get('email') ?? '');
+		const telefono = String(data.get('telefono') ?? '');
+		const mensaje = String(data.get('mensaje') ?? '');
+
+		const asunto = `Consulta web de ${nombre}`;
+		const cuerpo = [
+			`Nombre: ${nombre}`,
+			`Email: ${email}`,
+			`Teléfono: ${telefono || 'No indicado'}`,
+			'',
+			'Mensaje:',
+			mensaje,
+		].join('\n');
+
+		const url = `https://mail.google.com/mail/?view=cm&fs=1&to=todomovilourense@gmail.com&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+		window.open(url, '_blank', 'noopener');
+	});
+</script>
 
 <style>
 	.contacto__grid {
