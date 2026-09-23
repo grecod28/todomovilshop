@@ -13,8 +13,8 @@
 				class="brand__mark"
 				src="/images/logo.png"
 				alt=""
-				width="56"
-				height="56"
+				width="84"
+				height="84"
 				loading="eager"
 				decoding="async"
 			/>
@@ -81,18 +81,21 @@
 		position: fixed;
 		inset: 0 0 auto 0;
 		z-index: 100;
-		height: var(--header-height);
+		--header-h: 100px;
+		height: var(--header-h);
 		background: rgba(255, 255, 255, 0.86);
 		backdrop-filter: blur(12px);
 		-webkit-backdrop-filter: blur(12px);
 		border-bottom: 1px solid transparent;
 		transition:
+			height 0.4s var(--ease),
 			box-shadow var(--speed) var(--ease),
 			border-color var(--speed) var(--ease);
 	}
 
-	/* Sombra suave al hacer scroll */
+	/* Sombra suave y cabecera compacta al hacer scroll */
 	.site-header.is-scrolled {
+		--header-h: var(--header-height);
 		box-shadow: var(--shadow-sm);
 		border-color: rgba(31, 60, 100, 0.08);
 	}
@@ -119,11 +122,20 @@
 
 	.brand__mark {
 		padding: .3rem;
-		width: 56px;
-		height: 56px;
+		width: 84px;
+		height: 84px;
 		border-radius: 14px;
 		object-fit: contain;
 		box-shadow: 0 6px 14px rgba(63, 144, 206, 0.35);
+		transition:
+			width 0.4s var(--ease),
+			height 0.4s var(--ease);
+	}
+
+	/* Logo reducido al hacer scroll */
+	.site-header.is-scrolled .brand__mark {
+		width: 56px;
+		height: 56px;
 	}
 
 	.brand__name span {
@@ -271,7 +283,7 @@
 
 		.main-nav {
 			position: fixed;
-			top: var(--header-height);
+			top: var(--header-h);
 			left: 0;
 			right: 0;
 			bottom: 0;
