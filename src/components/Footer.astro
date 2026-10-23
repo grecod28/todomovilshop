@@ -101,7 +101,13 @@ const year = new Date().getFullYear();
 	<!-- Barra inferior con copyright dinámico -->
 	<div class="footer__bottom">
 		<div class="container footer__bottom-inner">
-			<p>© {year} TodoMóvilShop · Ourense. Todos los derechos reservados.</p>
+			<div class="footer__copyright">
+				<p>© {year} TodoMóvilShop · Ourense. Todos los derechos reservados.</p>
+				<p class="footer__credit">
+					Web realizada por 
+					<a href="https://www.studiok2.es" target="_blank" rel="noopener"> K2 Studio</a>
+				</p>
+			</div>
 			<a href="tel:+34619522906" class="footer__phone">619 522 906</a>
 		</div>
 	</div>
@@ -233,6 +239,26 @@ const year = new Date().getFullYear();
 		font-size: 0.85rem;
 	}
 
+	.footer__copyright {
+		display: grid;
+		gap: 0.3rem;
+		justify-items: center;
+	}
+
+	.footer__credit {
+		color: #8b98ab;
+	}
+
+	.footer__credit a {
+		color: #b9c4d4;
+		font-weight: 600;
+		transition: color var(--speed) var(--ease);
+	}
+
+	.footer__credit a:hover {
+		color: var(--color-cyan);
+	}
+
 	.footer__phone {
 		color: var(--color-cyan);
 		font-weight: 600;
@@ -249,6 +275,10 @@ const year = new Date().getFullYear();
 
 		.footer__bottom-inner {
 			flex-direction: row;
+		}
+
+		.footer__copyright {
+			justify-items: start;
 		}
 	}
 </style>
